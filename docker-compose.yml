@@ -1,0 +1,65 @@
+version: '3.1'
+
+services:
+    app:
+        build:
+            context: ./docker/localhost/php
+            dockerfile: Dockerfile
+        ports:
+            - '9000'
+        volumes:
+            - '.:/var/www/html'
+        networks:
+            - medison
+        depends_on:
+            - db
+        container_name: medison-app
+    nginx:
+        image: nginx:alpine
+        container_name: medison-nginx
+        restart: unless-stopped
+        ports:
+            - '${APP_PORT:-80}:80'
+        volumes:
+            - .:/var/www/html
+            - ./docker/localhost/nginx/default.conf:/etc/nginx/conf.d/default.conf
+        networks:
+            - medison
+        depends_on:
+            - app
+    npm:
+        image: node:18.12
+        working_dir: /var/www/html
+        container_name: medison-npm
+        volumes_from:
+            - app
+        command: tail -f /dev/null
+    db:
+        image: mariadb
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: password
+            MYSQL_PASSWORD: password
+            MYSQL_USER: medison
+            MYSQL_DATABASE: medison
+            MYSQL_ROOT_HOST: "%"
+        volumes:
+            - 'medison-data:/var/lib/mysql'
+        networks:
+            - medison
+    phpmyadmin:
+        image: 'phpmyadmin/phpmyadmin'
+        ports:
+            - '${PHPMYADMIN_PORT:-8181}:80'
+        networks:
+            - medison
+        depends_on:
+            - db
+
+
+networks:
+    medison:
+        driver: bridge
+volumes:
+    medison-data:
+        driver: local
