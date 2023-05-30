@@ -35,8 +35,8 @@ Make sure you have the following software installed on your machine:
 
 6. Seed the database with initial data (e.g., user seeder).
     ```bash
-    docker-compose exec medison-app php artisan db:seed
-
+    docker-compose exec medison-app php artisan db:seed --class=UserSeeder
+   
 8. Install NPM dependencies.
     ```bash
     docker-compose exec medison-npm npm install
