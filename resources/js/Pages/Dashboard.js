@@ -1,6 +1,6 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import Authenticated from '@/Layouts/Authenticated';
-import {Head, usePage} from '@inertiajs/inertia-react';
+import {Head} from '@inertiajs/inertia-react';
 import CountryLayout from "@/Components/CountryLayout";
 import Alert from "@/Components/Alert";
 

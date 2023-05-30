@@ -2540,11 +2540,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
-/* harmony import */ var _CreateCountry__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CreateCountry */ "./resources/js/Components/CreateCountry.js");
-/* harmony import */ var _Components_Countries__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Components/Countries */ "./resources/js/Components/Countries.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
+/* harmony import */ var _CreateCountry__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CreateCountry */ "./resources/js/Components/CreateCountry.js");
+/* harmony import */ var _Components_Countries__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/Countries */ "./resources/js/Components/Countries.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 
@@ -2552,14 +2550,14 @@ __webpack_require__.r(__webpack_exports__);
 
 var CountryLayout = function CountryLayout(_ref) {
   var props = _ref.props;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
     className: "flex flex-col lg:flex-row",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       className: "w-full lg:w-1/4 lg:pr-6 mb-6 lg:mb-0",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_CreateCountry__WEBPACK_IMPORTED_MODULE_2__["default"], {})
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_CreateCountry__WEBPACK_IMPORTED_MODULE_1__["default"], {})
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       className: "w-full lg:w-3/4",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Components_Countries__WEBPACK_IMPORTED_MODULE_3__["default"], {})
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Components_Countries__WEBPACK_IMPORTED_MODULE_2__["default"], {})
     })]
   });
 };
@@ -2904,16 +2902,13 @@ __webpack_require__.r(__webpack_exports__);
 var Modal = function Modal(_ref) {
   var children = _ref.children,
     modalOpen = _ref.modalOpen,
-    setModalOpen = _ref.setModalOpen,
     title = _ref.title;
-  var closeModal = function closeModal() {
-    setModalOpen(false);
-  };
+  if (!modalOpen) return null;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      className: "".concat(modalOpen ? "fixed" : "hidden", " fixed inset-0 bg-black opacity-75")
+      className: "fixed inset-0 bg-black opacity-75"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      className: "".concat(modalOpen ? "fixed" : "hidden", " inset-0 flex items-center justify-center z-50"),
+      className: "fixed inset-0 flex items-center justify-center z-50",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
         className: "bg-white rounded-lg shadow-lg ",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
