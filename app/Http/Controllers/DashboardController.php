@@ -11,7 +11,7 @@ class DashboardController extends Controller
     {
         //todo pagination
         return Inertia::render('Dashboard', [
-            'countries' => \App\Models\Country::paginate(2),
+            'countries' => \App\Models\Country::paginate(),
         ]);
     }
 }

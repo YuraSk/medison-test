@@ -13,7 +13,7 @@ class UpdateCountryRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,11 @@ class UpdateCountryRequest extends FormRequest
      */
     public function rules()
     {
+        $countryId = $this->route('country')->id;
+
         return [
-            //
+            'name' => 'required|alpha|unique:countries,name,' . $countryId . '|max:80|min:3',
+            'iso' => 'required|alpha|unique:countries,iso,' . $countryId . '|max:2|min:2',
         ];
     }
 }

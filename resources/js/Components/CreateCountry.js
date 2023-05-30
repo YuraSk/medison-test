@@ -1,44 +1,30 @@
 import React from 'react';
 import Input from "@/Components/Input";
 import Label from "@/Components/Label";
-import Checkbox from "@/Components/Checkbox";
-import {Link, useForm} from "@inertiajs/inertia-react";
+import {useForm} from "@inertiajs/inertia-react";
 import Button from "@/Components/Button";
+import useHandleCountryInput from "@/Hooks/useHandleCountryInput";
 
 export default function CreateCountry(props) {
-    const { data, setData, post, processing, errors, reset } = useForm({
+    const {data, setData, post, processing, errors, reset} = useForm({
         name: '',
         iso: '',
     });
+    const {onHandleChange} = useHandleCountryInput(setData);
     const submit = (e) => {
         e.preventDefault();
-        post(route('countries.store'));
-        reset();
-    }
-    const onHandleChange = (event) => {
-        const { name, value } = event.target;
-        if (name === 'iso' && value.length > 2) {
-            return;
-        }
-        if (name === 'iso'){
-            setData((prevData) => ({
-                ...prevData,
-                [name]: value.toUpperCase(),
-            }));
-            return;
-        }
-        const capitalizedValue = value.charAt(0).toUpperCase() + value.slice(1);
-        setData((prevData) => ({
-            ...prevData,
-            [name]: capitalizedValue,
-        }));
+        post(route('countries.store'), {
+            onSuccess: () => {
+                reset();
+            }
+        });
     }
     return (
         <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-            <div className="p-6 bg-white border-b border-gray-200">Create Country</div>
+            <div className="p-6 bg-gray-200 border-b border-gray-200 font-bold">Create Country</div>
             <form onSubmit={submit}>
-                <div>
-                    <Label forInput="name" value="Country" />
+                <div className='p-4'>
+                    <Label forInput="name" value="Country"/>
                     <Input
                         type="text"
                         name="name"
@@ -47,9 +33,10 @@ export default function CreateCountry(props) {
                         isFocused={true}
                         handleChange={onHandleChange}
                     />
+                    {errors.name && (<div className="text-red-500 text-sm">{errors.name}</div>)}
                 </div>
-                <div className="mt-4">
-                    <Label forInput="iso" value="Iso" />
+                <div className="p-4">
+                    <Label forInput="iso" value="Iso"/>
                     <Input
                         type="text"
                         name="iso"
@@ -58,11 +45,15 @@ export default function CreateCountry(props) {
                         autoComplete="current-password"
                         handleChange={onHandleChange}
                     />
+                    {errors.iso && (<div className="text-red-500 text-sm">{errors.iso}</div>)}
+
                 </div>
-                <div className="flex items-center justify-end mt-4">
-                    <Button className="ml-4" processing={processing}>
-                        Create
-                    </Button>
+                <div className="p-2 bg-gray-200 border-b border-gray-200 ">
+                    <div className="flex items-center justify-end mt-4">
+                        <Button className="ml-4" processing={processing}>
+                            Create
+                        </Button>
+                    </div>
                 </div>
             </form>
         </div>
